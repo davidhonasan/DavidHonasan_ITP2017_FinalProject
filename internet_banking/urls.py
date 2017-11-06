@@ -17,6 +17,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^', include('bank.urls')),
+    url(r'^admin/', admin.site.urls),   # admin url
+    url(r'^', include('bank.urls')),    # include the url file in bank folders
 ]

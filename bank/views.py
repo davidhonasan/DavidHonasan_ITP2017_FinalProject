@@ -1,50 +1,54 @@
-from django.shortcuts import render, redirect, HttpResponse
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.contrib import messages
-from django.core.exceptions import ObjectDoesNotExist
-from .models import Account
+from django.shortcuts import render, redirect   # importing modules for render page and redirect page
+from django.contrib.auth import authenticate, login, logout # importing modules for authenticate, login and logout
+from django.contrib.auth.decorators import login_required   # importing modules for redirecting to login page if entering page that needs login
+from django.contrib.auth.models import User # importing User objects that already exist in Django
+from django.contrib import messages # importing message for alert if there's error
+from django.core.exceptions import ObjectDoesNotExist   # importing raise error
+from .models import Account # importing account object
 
 
-account = Account
-# Create your views here.
+# main page
 def index(request):
     return render(request, 'index.html')
 
-
+# login page
 def login_form(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated:   # if not authenticated render login, else go to menu
         return render(request, 'account/login.html')
     else:
         return redirect('bank:menu')
 
-
+# login action
 def login_action(request):
+    # get the username and password then authenticate it
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(request, username=username, password=password)
-    if user is not None:
+    if user is not None: # if authenticate is successful then login and redirect to menu
         login(request, user)
         return redirect('bank:menu')
-    else:
+    else:   # else show error
         messages.error(request, 'Sorry, wrong username / password or either account is not registered. ')
         return redirect('bank:login_form')
 
+# logout action
 def logout_action(request):
-    logout(request)
+    logout(request) # logout and redirect to main
     return redirect('bank:main')
 
+# menu, need login to see this page
 @login_required
 def menu(request):
-    name = request.user.get_full_name()
+    name = request.user.get_full_name() # show the full name
     return render(request, 'menu/menu.html', {'full_name': name})
 
+# balance, need login to see this page
 @login_required
 def balance(request):
-    acc = Account.objects.get(user_id=request.user.id)
+    acc = Account.objects.get(user_id=request.user.id) # get the balance for the user that logged on
     return render(request, 'menu/balance.html', {'acc': acc})
 
+# transfer action, need login to see this page
 @login_required
 def transfer(request):
 
@@ -79,6 +83,7 @@ def transfer(request):
         messages.error(request, 'You can\'t transfer to \'{}\' because that user doesn\'t exist.'.format(request.POST['to']))
         return redirect('bank:transfer_form')
 
+# transfer page, need to be logged on
 @login_required
 def transfer_form(request):
     return render(request, 'menu/transfer.html')
