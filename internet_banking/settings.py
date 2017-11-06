@@ -127,5 +127,5 @@ LOGIN_URL = 'bank:login_form'   # if not login direct to this link
 LOGIN_REDIRECT_URL = 'bank:menu'    # after login redirect to menu
 
 # Session expire
-SESSION_COOKIE_AGE = 600  # Session expires after 600s
+SESSION_COOKIE_AGE = 600    # Session expires after 600s
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Session expired after browser closed
