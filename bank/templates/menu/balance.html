@@ -1,0 +1,17 @@
+{% extends '../base.html' %}
+
+{% block title %}Account{% endblock %}
+{% block content %}
+    <h2>Balance</h2>
+    <a class="btn btn-primary btn-md" href="{% url 'bank:menu' %}">← Back to menu</a>
+    <table class="table">
+        <tr>
+            <th id="your_balance">
+               Your Balance:
+            </th>
+            <th>
+                Rp. {{ acc.balance }}
+            </th>
+        </tr>
+    </table>
+{% endblock %}

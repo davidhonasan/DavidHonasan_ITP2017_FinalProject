@@ -1,0 +1,44 @@
+body {
+    background-color: lightcyan;
+}
+
+.wrapper80 {
+    width: 80%;
+    margin:auto;
+    padding:10px 20px;
+}
+
+/* Navbar */
+.navbar-brand a {
+    color:grey;
+    transition: 1s ease;
+    font-size: 48px;
+    font-family: 'Pacifico', cursive;
+}
+
+.navbar-brand a:hover {
+    color:white;
+    text-decoration: none;
+}
+
+/* Content*/
+.jumbotron {
+    background-color: #ffffff4d;
+}
+
+.btn {
+    min-width:100px;
+    margin:10px 5px;
+}
+
+.error, .success {
+    margin:0;
+}
+
+.error strong, .success strong{
+    text-transform: capitalize;
+}
+
+#your_balance {
+    width: 200px;
+}

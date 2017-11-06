@@ -1,0 +1,14 @@
+{% extends '../base.html' %}
+
+{% block title %}Account{% endblock %}
+{% block content %}
+    <h2>Hi, {{ full_name }}</h2>
+    <h3>Welcome to ibank!</h3>
+    <hr class="my-lg-4"/>
+    <h4>Menu:</h4>
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action btn btn-outline-success" href="{% url 'bank:balance' %}">Account Balance</a>
+        <a class="list-group-item list-group-item-action btn btn-outline-success" href="{% url 'bank:transfer_form' %}">Transfer</a>
+        <a class="btn btn-danger btn-block btn-lg" href="{% url 'bank:logout' %}">Logout</a>
+    </div>
+{% endblock %}

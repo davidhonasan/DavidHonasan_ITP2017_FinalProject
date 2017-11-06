@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Main{% endblock %}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-3">Welcome to ibank.</h1>
+        <p class="lead">Experience a new way in banking.</p>
+        <p class="lead">Anywhere, anytime.</p>
+        <hr class="my-4">
+        <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{% url 'bank:login_form' %}">Login</a>
+        </p>
+    </div>
+{% endblock %}
